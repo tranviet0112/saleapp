@@ -1,0 +1,56 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Trang chu{% endblock %}
+
+{% block content %}
+<h1 class="subject"> CHAO MUNG CAC BAN DEN WEBSITE BAN HANG TRUC TUYEN!!!</h1>
+
+<div class="container">
+    {% if pages > 1 %}
+    <ul class="pagination">
+        {% for idx in range(1, pages+1) %}
+        <li class="page-item"><a class="page-link" href="{{ url_for('home', page=idx) }}">{{ idx }}</a></li>
+        {% endfor %}
+<!--      <li class="page-item"><a class="page-link" href="{{ url_for('home', page=1) }}">1</a></li>-->
+<!--      <li class="page-item"><a class="page-link" href="{{ url_for('home', page=2) }}">2</a></li>-->
+
+<!--      <li class="page-item"><a class="page-link" href="#">Previous</a></li>-->
+<!--      <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+<!--      <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+<!--      <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+<!--      <li class="page-item"><a class="page-link" href="#">Next</a></li>-->
+    </ul>
+    {% endif %}
+
+    {% if products %}
+    <div class="row">
+        {% for p in products %}
+        <div class="col-md-3 col-xs-12">
+            <div class="card">
+              <img class="card-img-top" src="{{ url_for('static', filename = p.image) }}" alt={{ p.name }}>
+              <div class="card-body">
+                <h4 class="card-title">{{ p.name }}</h4>
+                <p class="card-text">{{ "{:,.1f}".format(p.price) }} VND</p>
+                <a href="#" class="btn btn-primary">Dat hang</a>
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p><i>Khong co san pham nao!!!</i></p>
+    {% endif %}
+</div>
+
+<!--<ul>-->
+<!--&lt;!&ndash;        <li><a href="#">Tat ca san pham</a> </li>&ndash;&gt;-->
+<!--&lt;!&ndash;        <li><a href="/products">Tat ca san pham</a> </li>&ndash;&gt;-->
+<!--    <li><a href={{ url_for('product_list')}}>Tat ca san pham</a> </li>-->
+<!--    {% for c in categories %}-->
+<!--&lt;!&ndash;        <li><a href="#">{{ c.name }}</a> </li>&ndash;&gt;-->
+<!--&lt;!&ndash;        <li><a href="/products?category_id={{ c.id }}">{{ c.name }}</a> </li>&ndash;&gt;-->
+<!--    <li><a href="{{ url_for('product_list', category_id=c.id) }}">{{ c.name }}</a> </li>-->
+<!--    {% endfor %}-->
+<!--</ul>-->
+{% endblock %}
+
